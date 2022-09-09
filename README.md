@@ -13,7 +13,8 @@ Steps To Follow:
     2. Open the project it an IDE.
     
     
-    3. Run: `npm i` to install all the dependencies.
+    3. Run: `npm install --omit=dev` to install all the dependencies but not the dev dependencies. A detailed explanation for not touching the dev dependencies is mentioned below as it could hamper the script execution and reporting part.
+    We have made use of dredd library for test execution and reporting which have been manually changes, hence we don't want that part to re-installed on executing npm i, hence we are using the above mentioned command to install the dependencies.
     
     
     Consumer End:
