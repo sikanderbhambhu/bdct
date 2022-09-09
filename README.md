@@ -14,7 +14,7 @@ Steps To Follow:
     
     
     3. Run: `npm install --omit=dev`
-        Plese strictly use this command to install all the dependencies but not the dev dependencies (only 2 are there).
+        Plese strictly use this command to install all the dependencies but not the dev dependencies (only 'dredd' available in this section).
     
         DREDD library has been used for test execution & reporting & it has been manually changed for some extra assertions (CHAI Assertions included explicitly).
         This is done because of the following reasons:

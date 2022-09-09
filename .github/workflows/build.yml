@@ -24,8 +24,8 @@ jobs:
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '14'
-      - name: Installing All The Packages Using 'npm i' Command For ${{ matrix.pact_provider }}
-        run: npm i
+      - name: Installing All The Packages Using 'npm install --omit=dev' Command For ${{ matrix.pact_provider }}
+        run: npm install --omit=dev
       - name: Executing Tests For ${{ matrix.pact_provider }}
         run: npm run consumerTest
         env:
