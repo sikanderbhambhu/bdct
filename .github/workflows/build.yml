@@ -37,7 +37,7 @@ jobs:
 
   # Runs on branches as well, so we know the status of our PRs
   Can-I-Deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: Generate-Consumer-Contracts
     steps:
       - uses: actions/checkout@v2
