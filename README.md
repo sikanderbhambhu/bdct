@@ -14,10 +14,15 @@ Steps To Follow:
     
     
     3. Run: `npm install --omit=dev`
-    Plese strictly use this command to install all the dependencies but not the dev dependencies (only 2 are there). A detailed explanation for not touching the dev dependencies is mentioned below as it could hamper the script execution and reporting part.
+        Plese strictly use this command to install all the dependencies but not the dev dependencies (only 2 are there).
     
-    We have made use of dredd library for test execution and reporting which have been manually changes, hence we don't want that part to re-installed on executing npm i, hence we are using the above mentioned command to install the dependencies.
+        DREDD library has been used for test execution & reporting & it has been manually changed for some extra assertions (CHAI Assertions included explicitly).
+        This is done because of the following reasons:
+            i. DREDD only validates the presnce of all the fields in the API Response as per the OAS document.
+            ii. CHAI Assertions validates the data types of all fields mentioned in OAS document against real-time response of the API.
     
+        So, we don't want these manual changes to get overridden on executing npm i, hence --omit flag is being used.
+        
     
     Consumer End:
     
@@ -78,16 +83,3 @@ So, better proceed with first option that is Pact-Ruby-Standalone (https://githu
     Pact Exited With Error Code 1 OR Error: the process 3748 not found (the process ID could vary). In order to resolve this error, please refer to this link
 
     https://stackoverflow.com/questions/45103155/pact-exited-with-code-1
-
-
-
-### NOTE (IMPORTANT):
-
-
-Some changes have been introduced in the DREDD library to accomodate CHAI ASSERTIONS so that data types of fields are validated because Dredd uses Gavel Assertions to check whether all fields are available in the API Response as per the OAS document but it does not validate the data type.
-
-So, below dependency was added initially in the package.json but now it has been removed as it has been explicitly provided in the node_modules folder in the repository. This is done to avoid the overriding the changes made to dredd reporting on triggering the 'npm i' command.
-    
-    "dredd": "14.1.0"
-
-Hence, CHAI Assertions are introduced to do that and the node_modules folder is included only with DREDD library, so when you take a clone of this repository, you still need to run npm i command to get other libraries / packages.
