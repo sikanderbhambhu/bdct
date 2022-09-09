@@ -1,0 +1,6 @@
+I, [2022-09-08T13:21:31.265293 #20380]  INFO -- : Registered expected interaction GET /v1/employee/getEmployee
+I, [2022-09-08T13:21:31.268285 #20380]  INFO -- : Received request GET /v1/employee/getEmployee
+I, [2022-09-08T13:21:31.269284 #20380]  INFO -- : Found matching response for GET /v1/employee/getEmployee
+I, [2022-09-08T13:21:31.296454 #20380]  INFO -- : Verifying - interactions matched
+I, [2022-09-08T13:21:31.311870 #20380]  INFO -- : Cleared interactions
+I, [2022-09-08T13:21:31.327046 #20380]  INFO -- : Writing pact for get-employee-api-provider to C:/Users/Sikander_Bhambhu/Downloads/Contract_Testing/Consumer/contracts/post_request/get-employee-api-consumerb-get-employee-api-provider.json

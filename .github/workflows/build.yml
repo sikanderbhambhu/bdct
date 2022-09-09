@@ -1,0 +1,64 @@
+name: Build
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  PACT_BROKER_BASE_URL: https://epam7.pactflow.io
+  PACT_BROKER_TOKEN: 0seO-geVlONnjCudc78FxQ
+  # PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN_FOR_CI_CD_WORKSHOP }}
+  BASE_URL: https://epam7.pactflow.io
+  GIT_COMMIT: ${{ github.sha }}
+  GIT_REF: ${{ github.ref }}
+
+jobs:
+  Generate-Consumer-Contracts:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        pact_provider:
+          ["get-employee-api-provider"]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+      - name: Installing All The Packages Using 'npm i' Command For ${{ matrix.pact_provider }}
+        run: npm i
+      - name: Executing Tests For ${{ matrix.pact_provider }}
+        run: npm run consumerTest
+        env:
+          PACT_PROVIDER: ${{ matrix.pact_provider }}
+      - name: Publish pacts for ${{ matrix.pact_consumer }} and ${{ github.ref }}
+        run: npm run publish:consumerA
+        env:
+          PACT_PROVIDER: ${{ matrix.pact_provider }}
+
+  # Runs on branches as well, so we know the status of our PRs
+  Can-I-Deploy:
+    runs-on: ubuntu-latest
+    needs: Generate-Consumer-Contracts
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker pull pactfoundation/pact-cli:latest
+      - name: Installing Pact Ruby Standalone
+        run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
+      - run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
+      - run: cd pact/bin
+      - run: ./pact-mock-service --help start
+      - run: ./pact-provider-verifier --help verify
+      - name: Can I deploy?
+        # run: GIT_BRANCH=${GIT_REF:11} make can_i_deploy
+        run: npm run can-i-deploy-consumer
+
+  # Only deploy from master
+  deploy:
+    runs-on: ubuntu-latest
+    needs: Can-I-Deploy
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker pull pactfoundation/pact-cli:latest
+      - name: Deploy
+        run: GIT_BRANCH=${GIT_REF:11} make deploy
+        if: github.ref == 'refs/heads/master'

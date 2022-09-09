@@ -1,0 +1,76 @@
+{
+  "consumer": {
+    "name": "get-employee-api-consumerB"
+  },
+  "provider": {
+    "name": "get-employee-api-provider"
+  },
+  "interactions": [
+    {
+      "description": "a get request",
+      "request": {
+        "method": "GET",
+        "path": "/v1/employee/getEmployee"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "empId": 13,
+          "employeeName": "",
+          "phoneNumber": "",
+          "address": [
+            {
+              "addressLine1": "",
+              "city": "",
+              "state": "",
+              "pinCode": 13
+            }
+          ],
+          "designation": "",
+          "reportingManager": "",
+          "shiftTimings": ""
+        },
+        "matchingRules": {
+          "$.body.empId": {
+            "match": "type"
+          },
+          "$.body.employeeName": {
+            "match": "type"
+          },
+          "$.body.phoneNumber": {
+            "match": "type"
+          },
+          "$.body.address[0].addressLine1": {
+            "match": "type"
+          },
+          "$.body.address[0].city": {
+            "match": "type"
+          },
+          "$.body.address[0].state": {
+            "match": "type"
+          },
+          "$.body.address[0].pinCode": {
+            "match": "type"
+          },
+          "$.body.designation": {
+            "match": "type"
+          },
+          "$.body.reportingManager": {
+            "match": "type"
+          },
+          "$.body.shiftTimings": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

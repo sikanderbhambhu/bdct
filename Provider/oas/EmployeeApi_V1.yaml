@@ -1,0 +1,133 @@
+openapi: 3.0.1
+info:
+  title: '@epam-internal-corp/employee-api'
+  description: Employee Experience API (version v1)
+  version: '1.0'
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/employee/getEmployee:
+    get:
+      tags:
+        - Employees
+      summary: Get Employees API
+      description: Get Employees
+      operationId: get-employees
+      responses:
+        '200':
+          description: Retrieved an employee object successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1_EmployeeGetResponse200'
+              example:
+                empId: 0
+                employeeName: string
+                phoneNumber: string
+                address:
+                - addressLine1: string
+                  city: string
+                  state: string
+                  pinCode: 0
+                designation: string
+                reportingManager: string
+                shiftTimings: string
+                # socialSecurityNumber: string
+                # socialSecurityNumber is not implemented in the service
+                # panCard: string
+                # panCard is not implemented in the service                
+  /v2/employee/getEmployee:
+    get:
+      tags:
+        - Employees
+      summary: Get Employees
+      description: Get Employees
+      operationId: get-employees
+      responses:
+        '200':
+          description: An employee object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V2_EmployeeGetResponse200'
+              example:
+                empId: 0
+                employeeName: string
+                phoneNumber: string
+                address:
+                  - addressLine1: string
+                    city: string
+                    state: string
+                    pinCode: 0
+                designation: string
+                reportingManager: string
+                shiftTimings: string
+                driverLicense: string
+                # spouseName: string
+                # spouseName is not implemented in the service
+                # fatherName: string
+                # fatherName is not implemented in the service
+components:
+  schemas:
+    V1_EmployeeGetResponse200:
+      type: object
+      properties:
+        empId:
+          type: number
+        employeeName:
+          type: string
+        phoneNumber:
+          type: string
+        address:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeAddress'
+        designation:
+          type: string
+        reportingManager:
+          type: string
+        shiftTimings: 
+          type: string
+        socialSecurityNumber:
+          type: string
+        panCard:
+          type: string          
+      additionalProperties: false
+    V2_EmployeeGetResponse200:
+      type: object
+      properties:
+        empId:
+          type: number
+        employeeName:
+          type: string
+        phoneNumber:
+          type: string
+        address:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeAddress'
+        designation:
+          type: string
+        reportingManager:
+          type: string
+        shiftTimings: 
+          type: string
+        driverLicense:
+          type: string
+        spouseName:
+          type: string
+        fatherName:
+          type: string
+      additionalProperties: false
+    EmployeeAddress:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        pinCode:
+          type: number
+      additionalProperties: false

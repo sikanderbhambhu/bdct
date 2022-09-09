@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: '@epam-internal-corp/employee-api'
+  description: Employee Experience API (version v1)
+  version: '1.0'
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/employee/getEmployee:
+    get:
+      tags:
+        - Employees
+      summary: Get Employees API
+      description: Get Employees
+      operationId: get-employees
+      responses:
+        '200':
+          description: Retrieved an employee object successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeGetResponse200'
+              example:
+                empId: 0
+                employeeName: string
+                phoneNumber: string
+                address:
+                - addressLine1: string
+                  city: string
+                  state: string
+                  pinCode: 0
+                designation: string
+                reportingManager: string
+                shiftTimings: string
+                # socialSecurityNumber: 0
+  /v2/employee/getEmployee:
+    get:
+      tags:
+        - Employees
+      summary: Get Employees
+      description: Get Employees
+      operationId: get-employees
+      responses:
+        '200':
+          description: An employee object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeGetResponse200'
+              example:
+                empId: 0
+                employeeName: string
+                phoneNumber: string
+                address:
+                  - addressLine1: string
+                    city: string
+                    state: string
+                    pinCode: 0
+                designation: string
+                reportingManager: string
+                shiftTimings: string
+                driverLicense: string
+                # spouseName: string
+components:
+  schemas:
+    EmployeeGetResponse200:
+      type: object
+      properties:
+        socialSecurityNumber:
+          type: number
+        spouseName:
+          type: string      
+        empId:
+          type: number
+        employeeName:
+          type: string
+        phoneNumber:
+          type: string
+        address:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeAddress'
+        designation:
+          type: string
+        reportingManager:
+          type: boolean
+        shiftTimings: 
+          type: string
+        driverLicense:
+          type: boolean   
+      additionalProperties: false
+    EmployeeAddress:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        pinCode:
+          type: number
+      additionalProperties: false
