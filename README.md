@@ -85,6 +85,6 @@ Some changes have been introduced in the DREDD library to accomodate CHAI ASSERT
 
 So, below dependency was added initially in the package.json but now it has been removed as it has been explicitly provided in the node_modules folder in the repository. This is done to avoid the overriding the changes made to dredd reporting on triggering the 'npm i' command.
     
-    "dredd": "14.1.0",
+    "dredd": "14.1.0"
 
 Hence, CHAI Assertions are introduced to do that and the node_modules folder is included only with DREDD library, so when you take a clone of this repository, you still need to run npm i command to get other libraries / packages.
