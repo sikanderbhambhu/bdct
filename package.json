@@ -12,7 +12,7 @@
     
     "providerTest": "dredd",
 
-    "publish:EmployeeApi:V1": "C:/Users/Sikander_Bhambhu/Downloads/pact-1.89.02-rc1-win32/pact/bin/pactflow publish-provider-contract C:/Users/Sikander_Bhambhu/Downloads/Contract_Testing/Provider/oas/EmployeeApi_V1.yaml --broker-base-url=https://epam7.pactflow.io --broker-token=0seO-geVlONnjCudc78FxQ --provider get-employee-api-provider --content-type application/yaml --verification-results C:/Users/Sikander_Bhambhu/Downloads/Contract_Testing/Provider/results/ExecutionReport.md --verification-results-content-type application/yaml --verifier dredd --provider-app-version 1.0 --branch main --tag PROD --verification-success",
+    "publish:EmployeeApi": "pactflow publish-provider-contract Provider/oas/EmployeeApi_V1.yaml --verification-results Provider/results/ExecutionReport.md --broker-base-url=https://epam7.pactflow.io --broker-token=0seO-geVlONnjCudc78FxQ --provider get-employee-api-provider --provider-app-version 1.0 --verifier dredd --content-type application/yaml --verification-results-content-type application/yaml --branch main --tag PROD --verification-success",
     "can-i-deploy-provider": "pact-broker can-i-deploy --pacticipant get-employee-api-provider --broker-base-url=https://epam7.pactflow.io --broker-token=0seO-geVlONnjCudc78FxQ --version=1.0 --to-environment production"
   },
   "license": "",
