@@ -41,6 +41,12 @@ jobs:
     needs: Generate-Consumer-Contracts
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '16.15.1'
+      - name: Installing All The Packages For ${{ matrix.pact_provider }}
+        run: npm install --f
+      
       - run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
       - run: Powershell Expand-Archive pact-1.91.0-win32.zip
 #       - name: Installing Pact Ruby Standalone
