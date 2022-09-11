@@ -6,7 +6,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 
-const configUtils = __importStar(require("C:/Users/Sikander_Bhambhu/Downloads/Contract_Testing/node_modules/dredd/build/configUtils.js"));
+const configUtils = __importStar(require("C:/Users/Sikander_Bhambhu/Downloads/Contract_Testing/node_modules/dredd-using-gavel-and-chai-assertions/build/configUtils.js"));
 const hooks = require('hooks');
 const chai = require('chai');
 const expect = chai.expect;

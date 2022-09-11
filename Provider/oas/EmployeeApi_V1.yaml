@@ -32,7 +32,7 @@ paths:
                 designation: string
                 reportingManager: string
                 shiftTimings: string
-                # socialSecurityNumber: string
+                socialSecurityNumber: string
                 # socialSecurityNumber is not implemented in the service
                 # panCard: string
                 # panCard is not implemented in the service                
@@ -97,7 +97,7 @@ components:
       type: object
       properties:
         empId:
-          type: number
+          type: string
         employeeName:
           type: string
         phoneNumber:

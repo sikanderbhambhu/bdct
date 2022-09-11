@@ -1,5 +1,15 @@
 # Dredd Tests
-## Pass: GET (200) /v1/employee/getEmployee
+## Fail: GET (200) /v1/employee/getEmployee
+### Message
+```
+CHAI Assertions (Validates fields in the response against the 'SCHEMA' section in OAS)::
+CHAI Assertions Status -> PASS
+
+GAVEL Assertions (Validates fields in the response against the 'EXAMPLE' section in OAS)::
+body: At '/socialSecurityNumber' Missing required property: socialSecurityNumber
+
+```
+
 ### Request
 ```
 method: GET
@@ -33,7 +43,8 @@ body:
   ],
   "designation": "string",
   "reportingManager": "string",
-  "shiftTimings": "string"
+  "shiftTimings": "string",
+  "socialSecurityNumber": "string"
 }
 statusCode: 200
 
@@ -45,7 +56,7 @@ statusCode: 200
 headers: 
     content-type: application/json
     transfer-encoding: chunked
-    date: Fri, 09 Sep 2022 10:18:13 GMT
+    date: Sun, 11 Sep 2022 19:36:42 GMT
     connection: close
 
 bodyEncoding: utf-8
@@ -69,7 +80,68 @@ body:
 
 ```
 
-## Pass: GET (200) /v2/employee/getEmployee
+## Fail: GET (200) /v2/employee/getEmployee
+### Message
+```
+CHAI Assertions (Validates fields in the response against the 'SCHEMA' section in OAS)::
+expected res to satisfy API spec
+
+expected res to satisfy the '200' response defined for endpoint 'GET /v2/employee/getEmployee' in your API spec
+
+res did not satisfy it because: empId must be string
+
+res contained: {
+  body: {
+    empId: 101007,
+    employeeName: 'John Smart',
+    phoneNumber: '1624958216',
+    address: [
+      {
+        addressLine1: '15 Foreshore Road',
+        city: 'Philadelphia',
+        state: 'PA',
+        pinCode: 19101
+      }
+    ],
+    designation: 'QA Manager',
+    reportingManager: 'Mike Nebula',
+    shiftTimings: '09:00 AM',
+    driverLicense: 'D1243879'
+  }
+}
+
+The '200' response defined for endpoint 'GET /v2/employee/getEmployee' in API spec: {
+  '200': {
+    description: 'An employee object',
+    content: {
+      'application/json': {
+        schema: { '$ref': '#/components/schemas/V2_EmployeeGetResponse200' },
+        example: {
+          empId: 0,
+          employeeName: 'string',
+          phoneNumber: 'string',
+          address: [
+            {
+              addressLine1: 'string',
+              city: 'string',
+              state: 'string',
+              pinCode: 0
+            }
+          ],
+          designation: 'string',
+          reportingManager: 'string',
+          shiftTimings: 'string',
+          driverLicense: 'string'
+        }
+      }
+    }
+  }
+}
+
+GAVEL Assertions (Validates fields in the response against the 'EXAMPLE' section in OAS)::
+GAVEL Assertions Status -> PASS
+```
+
 ### Request
 ```
 method: GET
@@ -116,7 +188,7 @@ statusCode: 200
 headers: 
     content-type: application/json
     transfer-encoding: chunked
-    date: Fri, 09 Sep 2022 10:18:13 GMT
+    date: Sun, 11 Sep 2022 19:36:42 GMT
     connection: close
 
 bodyEncoding: utf-8
