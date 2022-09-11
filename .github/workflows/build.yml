@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: '14'
       - name: Installing All The Packages Using 'npm install --omit=dev' Command For ${{ matrix.pact_provider }}
-        run: npm install --omit=dev
+        run: npm install
       - name: Executing Tests For ${{ matrix.pact_provider }}
         run: npm run consumerTest
         env:
