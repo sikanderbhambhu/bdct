@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '16.15.1'
-      - name: Installing All The Packages Using 'npm install --omit=dev' Command For ${{ matrix.pact_provider }}
+      - name: Installing All The Packages For ${{ matrix.pact_provider }}
         run: npm install --f
       - name: Executing Tests For ${{ matrix.pact_provider }}
         run: npm run consumerTest
@@ -41,13 +41,13 @@ jobs:
     needs: Generate-Consumer-Contracts
     steps:
       - uses: actions/checkout@v2
-      - run: docker pull pactfoundation/pact-cli:latest
-      - name: Installing Pact Ruby Standalone
-        run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
-      - run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
-      - run: cd pact/bin
-      - run: ./pact-mock-service --help start
-      - run: ./pact-provider-verifier --help verify
+#       - run: docker pull pactfoundation/pact-cli:latest
+#       - name: Installing Pact Ruby Standalone
+#         run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
+#       - run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
+#       - run: cd pact/bin
+#       - run: ./pact-mock-service --help start
+#       - run: ./pact-provider-verifier --help verify
       - name: Can I deploy?
         # run: GIT_BRANCH=${GIT_REF:11} make can_i_deploy
         run: npm run can-i-deploy-consumer
