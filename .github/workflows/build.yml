@@ -41,7 +41,9 @@ jobs:
     needs: Generate-Consumer-Contracts
     steps:
       - uses: actions/checkout@v2
-#       - run: docker pull pactfoundation/pact-cli:latest
+      - run: curl.exe
+      - run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
+      - run: Powershell Expand-Archive pact-1.91.0-win32.zip
 #       - name: Installing Pact Ruby Standalone
 #         run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
 #       - run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
