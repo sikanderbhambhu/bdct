@@ -11,7 +11,7 @@ const hooks = require('hooks');
 const chai = require('chai');
 const expect = chai.expect;
 const chaiResponseValidator = require('chai-openapi-response-validator').default;
-
+const path = require('path');
 
 // hooks.beforeAll(function (transaction) {
 //     process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
@@ -32,7 +32,7 @@ const chaiResponseValidator = require('chai-openapi-response-validator').default
 
 
 hooks.afterEach(function (transaction) {
-    var projectPath = 'C:/Users/Sikander_Bhambhu/Downloads/Contract_Testing';
+    var projectPath = path.resolve(process.cwd());
     var blueprintPathInDreddConfig = configUtils.fetchBlueprintDetails();
 
     var filePath;
