@@ -90,8 +90,8 @@ jobs:
 #           distribution: 'temurin'          
 #           cache: 'maven'
         
-      - name: Checkout Employee API Code From Another Repository
-        uses: sikanderbhambhu/employee-service@master
+#       - name: Checkout Employee API Code From Another Repository
+#         uses: sikanderbhambhu/employee-service@master
 
 #       - name: Maven Clean & Install
 #         run: mvn clean install        
