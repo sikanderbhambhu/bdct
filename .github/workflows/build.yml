@@ -133,12 +133,12 @@ jobs:
 
 
   # Only deploy from master
-  deploy:
-    runs-on: ubuntu-latest
-    needs: Can-I-Deploy-Consumer
-    steps:
-      - uses: actions/checkout@v2
-      - run: docker pull pactfoundation/pact-cli:latest
-      - name: Deploy
-        run: GIT_BRANCH=${GIT_REF:11} make deploy
-        if: github.ref == 'refs/heads/master'
+#   deploy:
+#     runs-on: ubuntu-latest
+#     needs: Can-I-Deploy-Consumer
+#     steps:
+#       - uses: actions/checkout@v2
+#       - run: docker pull pactfoundation/pact-cli:latest
+#       - name: Deploy
+#         run: GIT_BRANCH=${GIT_REF:11} make deploy
+#         if: github.ref == 'refs/heads/master'
