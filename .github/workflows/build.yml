@@ -86,7 +86,7 @@ jobs:
         run: npm install --f
 
       - name: Starting Employee API
-        run: npm run employeeAPI
+        run: npm run start:employeeAPI
 
       - name: Executing Tests For ${{ matrix.pact_provider }}
         run: npm run providerTest
