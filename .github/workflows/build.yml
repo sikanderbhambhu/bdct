@@ -74,10 +74,7 @@ jobs:
 
 
 
-
-
-
-#   Generate-Provider-Contracts:
+  Generate-Provider-Contracts:
     runs-on: windows-latest
     strategy:
       matrix:
