@@ -70,12 +70,25 @@ jobs:
 
 
   Generate-Provider-Contracts:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         pact_provider:
           ["get-employee-api-provider"]
     steps:
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'maven'
+
+      - name: Checkout Employee API Code From Another Repository
+        uses: sikanderbhambhu/employee-service@master
+
+      - name: Maven Clean & Install
+        run: mvn clean install        
+    
       - name: Checkout Provider Code
         uses: actions/checkout@v2
 
@@ -83,18 +96,6 @@ jobs:
         uses: actions/setup-node@v2-beta
         with:
           node-version: '16.15.1'
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-#           distribution: 'adopt'
-
-      - name: Checkout Employee API Code From Another Repository
-        uses: sikanderbhambhu/employee-service@master
-
-      - name: Maven Clean & Install
-        run: mvn clean install    
 
       - name: Installing All The Packages
         run: npm install --f
