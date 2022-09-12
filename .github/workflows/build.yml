@@ -103,12 +103,17 @@ jobs:
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
 
-      - name: Downloading & Unzipping Pact Ruby Standalone On Linux Machine
-      - run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
-      - run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
-      - run: cd pact/bin
-      - run: ./pact-mock-service --help start
-      - run: ./pact-provider-verifier --help verify
+      - name: Downloading Pact Ruby Standalone
+        run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
+
+      - name: Unzipping Pact Ruby Standalone
+        run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
+      
+      - name: Navigating To Bin Directory Of Pact Ruby Standalone
+        run: cd pact/bin
+
+      - name: Starting The Pact Mock Service
+        run: ./pact-mock-service --help start
 
       - name: Publish pacts for ${{ matrix.pact_consumer }} and ${{ github.ref }}
         run: npm run publish:EmployeeApi
