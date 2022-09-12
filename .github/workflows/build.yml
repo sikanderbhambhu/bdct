@@ -90,7 +90,7 @@ jobs:
           java-version: '11'
 
       - name: Checkout Employee API Code From Another Repository
-        uses: sikanderbhambhu/employee-service@v1
+        uses: sikanderbhambhu/employee-service@master
 #         uses: actions/checkout@master
 #         with:
 #           repository: https://github.com/sikanderbhambhu/employee-service.git
