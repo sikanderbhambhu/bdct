@@ -1,215 +1,45 @@
 # Dredd Tests
-## Fail: GET (200) /v1/employee/getEmployee
-### Message
-```
-CHAI Assertions (Validates fields in the response against the 'SCHEMA' section in OAS)::
-CHAI Assertions Status -> PASS
-
-GAVEL Assertions (Validates fields in the response against the 'EXAMPLE' section in OAS)::
-body: At '/socialSecurityNumber' Missing required property: socialSecurityNumber
+## Error: GET (200) /v1/employee/getEmployee
 
 ```
 
-### Request
+Error: 
+Error: The provided argument must be either an absolute filepath or an object representing an OpenAPI specification.
+Error details: '../../Provider/oas/EmployeeApi_V1.yaml' is not an absolute filepath
+Stacktrace: 
+Error: The provided argument must be either an absolute filepath or an object representing an OpenAPI specification.
+Error details: '../../Provider/oas/EmployeeApi_V1.yaml' is not an absolute filepath
+    at loadSpec (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\openapi-validator\dist\openApiSpecFactory.js:36:15)
+    at makeApiSpec (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\openapi-validator\dist\openApiSpecFactory.js:16:18)
+    at default_1 (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\chai-openapi-response-validator\dist\index.js:10:61)
+    at C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\Provider\test\DreddHooks.js:46:14
+    at TransactionRunner.runHook (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\dredd-using-gavel-and-chai-assertions\build\TransactionRunner.js:229:13)
+    at runHookWithData (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\dredd-using-gavel-and-chai-assertions\build\TransactionRunner.js:181:26)
+    at C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:243:13
+    at replenish (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:440:21)
+    at C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:445:13
+    at _asyncMap (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:241:16)
 ```
-method: GET
-uri: /v1/employee/getEmployee
-headers: 
-    Accept: application/json
-    User-Agent: Dredd/14.1.0 (Windows_NT 10.0.19044; x64)
 
-body: 
-
-
-```
-
-### Expected
-```
-headers: 
-    Content-Type: application/json
-
-body: 
-{
-  "empId": 0,
-  "employeeName": "string",
-  "phoneNumber": "string",
-  "address": [
-    {
-      "addressLine1": "string",
-      "city": "string",
-      "state": "string",
-      "pinCode": 0
-    }
-  ],
-  "designation": "string",
-  "reportingManager": "string",
-  "shiftTimings": "string",
-  "socialSecurityNumber": "string"
-}
-statusCode: 200
+## Error: GET (200) /v2/employee/getEmployee
 
 ```
 
-### Actual
-```
-statusCode: 200
-headers: 
-    content-type: application/json
-    transfer-encoding: chunked
-    date: Mon, 12 Sep 2022 11:55:34 GMT
-    connection: close
-
-bodyEncoding: utf-8
-body: 
-{
-  "empId": 101007,
-  "employeeName": "John Smart",
-  "phoneNumber": "1624958216",
-  "address": [
-    {
-      "addressLine1": "15 Foreshore Road",
-      "city": "Philadelphia",
-      "state": "PA",
-      "pinCode": 19101
-    }
-  ],
-  "designation": "QA Manager",
-  "reportingManager": "Mike Nebula",
-  "shiftTimings": "09:00 AM"
-}
-
-```
-
-## Fail: GET (200) /v2/employee/getEmployee
-### Message
-```
-CHAI Assertions (Validates fields in the response against the 'SCHEMA' section in OAS)::
-expected res to satisfy API spec
-
-expected res to satisfy the '200' response defined for endpoint 'GET /v2/employee/getEmployee' in your API spec
-
-res did not satisfy it because: empId must be string
-
-res contained: {
-  body: {
-    empId: 101007,
-    employeeName: 'John Smart',
-    phoneNumber: '1624958216',
-    address: [
-      {
-        addressLine1: '15 Foreshore Road',
-        city: 'Philadelphia',
-        state: 'PA',
-        pinCode: 19101
-      }
-    ],
-    designation: 'QA Manager',
-    reportingManager: 'Mike Nebula',
-    shiftTimings: '09:00 AM',
-    driverLicense: 'D1243879'
-  }
-}
-
-The '200' response defined for endpoint 'GET /v2/employee/getEmployee' in API spec: {
-  '200': {
-    description: 'An employee object',
-    content: {
-      'application/json': {
-        schema: { '$ref': '#/components/schemas/V2_EmployeeGetResponse200' },
-        example: {
-          empId: 0,
-          employeeName: 'string',
-          phoneNumber: 'string',
-          address: [
-            {
-              addressLine1: 'string',
-              city: 'string',
-              state: 'string',
-              pinCode: 0
-            }
-          ],
-          designation: 'string',
-          reportingManager: 'string',
-          shiftTimings: 'string',
-          driverLicense: 'string'
-        }
-      }
-    }
-  }
-}
-
-GAVEL Assertions (Validates fields in the response against the 'EXAMPLE' section in OAS)::
-GAVEL Assertions Status -> PASS
-```
-
-### Request
-```
-method: GET
-uri: /v2/employee/getEmployee
-headers: 
-    Accept: application/json
-    User-Agent: Dredd/14.1.0 (Windows_NT 10.0.19044; x64)
-
-body: 
-
-
-```
-
-### Expected
-```
-headers: 
-    Content-Type: application/json
-
-body: 
-{
-  "empId": 0,
-  "employeeName": "string",
-  "phoneNumber": "string",
-  "address": [
-    {
-      "addressLine1": "string",
-      "city": "string",
-      "state": "string",
-      "pinCode": 0
-    }
-  ],
-  "designation": "string",
-  "reportingManager": "string",
-  "shiftTimings": "string",
-  "driverLicense": "string"
-}
-statusCode: 200
-
-```
-
-### Actual
-```
-statusCode: 200
-headers: 
-    content-type: application/json
-    transfer-encoding: chunked
-    date: Mon, 12 Sep 2022 11:55:34 GMT
-    connection: close
-
-bodyEncoding: utf-8
-body: 
-{
-  "empId": 101007,
-  "employeeName": "John Smart",
-  "phoneNumber": "1624958216",
-  "address": [
-    {
-      "addressLine1": "15 Foreshore Road",
-      "city": "Philadelphia",
-      "state": "PA",
-      "pinCode": 19101
-    }
-  ],
-  "designation": "QA Manager",
-  "reportingManager": "Mike Nebula",
-  "shiftTimings": "09:00 AM",
-  "driverLicense": "D1243879"
-}
-
+Error: 
+Error: The provided argument must be either an absolute filepath or an object representing an OpenAPI specification.
+Error details: '../../Provider/oas/EmployeeApi_V1.yaml' is not an absolute filepath
+Stacktrace: 
+Error: The provided argument must be either an absolute filepath or an object representing an OpenAPI specification.
+Error details: '../../Provider/oas/EmployeeApi_V1.yaml' is not an absolute filepath
+    at loadSpec (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\openapi-validator\dist\openApiSpecFactory.js:36:15)
+    at makeApiSpec (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\openapi-validator\dist\openApiSpecFactory.js:16:18)
+    at default_1 (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\chai-openapi-response-validator\dist\index.js:10:61)
+    at C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\Provider\test\DreddHooks.js:46:14
+    at TransactionRunner.runHook (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\dredd-using-gavel-and-chai-assertions\build\TransactionRunner.js:229:13)
+    at runHookWithData (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\dredd-using-gavel-and-chai-assertions\build\TransactionRunner.js:181:26)
+    at C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:243:13
+    at replenish (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:440:21)
+    at C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:445:13
+    at _asyncMap (C:\Users\Sikander_Bhambhu\Downloads\Contract_Testing\node_modules\async\dist\async.js:241:16)
 ```
 
