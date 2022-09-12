@@ -78,7 +78,10 @@ So, better proceed with first option that is Pact-Ruby-Standalone (https://githu
 6. When you run the command npm i and have the node_modules folder in your project structure, then please make sure to replace the files in node_modules -> dredd with the files provided in 'dredd_library_modified_for_reporting' folder. Files available in this folder have been modified for reporting purpose and should be updated.
 
 
-7. Pact Server Error: A couple of times it has been observed that the Pact Server does not start at all and the your are unable to generate the Consumer contracts. It gives a weird error code and fails the execution, errors like below (generally observed in Pact JS).
+7. For this project, I am using "dredd-using-gavel-and-chai-assertions": "^14.1.0" which is customized form of original DREDD package. I have pushed my customized code in https://www.npmjs.com/package/dredd-using-gavel-and-chai-assertions
+
+
+8. Pact Server Error: A couple of times it has been observed that the Pact Server does not start at all and the your are unable to generate the Consumer contracts. It gives a weird error code and fails the execution, errors like below (generally observed in Pact JS).
 
     Pact Exited With Error Code 1 OR Error: the process 3748 not found (the process ID could vary). In order to resolve this error, please refer to this link
 
