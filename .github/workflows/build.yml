@@ -70,13 +70,13 @@ jobs:
 
 
   Generate-Provider-Contracts:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         pact_provider:
           ["get-employee-api-provider"]
     steps:
-#       - uses: sikanderbhambhu/employee-service@master
+      - uses: sikanderbhambhu/employee-service@master
     
       - name: Install Node
         uses: actions/setup-node@v2-beta
