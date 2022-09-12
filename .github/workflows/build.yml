@@ -70,7 +70,7 @@ jobs:
 
 
   Generate-Provider-Contracts:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         pact_provider:
@@ -84,13 +84,13 @@ jobs:
         with:
           node-version: '16.15.1'
 
-      - name: Checkout Employee API Code From Another Repository
-        uses: sikanderbhambhu/employee-service@master
-
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: '11.0.16'
+          java-version: '11'
+
+      - name: Checkout Employee API Code From Another Repository
+        uses: sikanderbhambhu/employee-service@master
 
       - name: Maven Clean & Install
         run: mvn clean install    
@@ -102,6 +102,13 @@ jobs:
         run: npm run providerTest
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
+
+      - name: Downloading & Unzipping Pact Ruby Standalone On Linux Machine
+      - run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
+      - run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
+      - run: cd pact/bin
+      - run: ./pact-mock-service --help start
+      - run: ./pact-provider-verifier --help verify
 
       - name: Publish pacts for ${{ matrix.pact_consumer }} and ${{ github.ref }}
         run: npm run publish:EmployeeApi
