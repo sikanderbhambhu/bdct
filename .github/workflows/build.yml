@@ -85,6 +85,13 @@ jobs:
       - name: Installing All The Packages
         run: npm install --f
 
+      - name: Install Java and Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
       - name: Starting Employee API
         run: npm run start:employeeAPI
 
@@ -93,17 +100,11 @@ jobs:
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
 
-      - name: Downloading Pact Ruby Standalone
-        run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-linux-x86_64.tar.gz
-
-      - name: Unzipping Pact Ruby Standalone
-        run: tar xzf pact-1.91.0-linux-x86_64.tar.gz
+      - name: Downloading PACT Ruby Standalone
+        run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
       
-      - name: Navigating To Bin Directory Of Pact Ruby Standalone
-        run: cd pact/bin
-
-      - name: Starting The Pact Mock Service
-        run: ./pact-mock-service --help start
+      - name: Unzipping PACT Ruby Standalone      
+        run: Powershell Expand-Archive pact-1.91.0-win32.zip
 
       - name: Publish pacts for ${{ matrix.pact_consumer }} and ${{ github.ref }}
         run: npm run publish:EmployeeApi
