@@ -67,7 +67,29 @@ jobs:
 #         run: npm run can-i-deploy-consumer
 
 
-  Generate-Provider-Contracts:
+  Trigger-Employee-API:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        pact_provider:
+          ["get-employee-api-provider"]
+    steps:    
+      - name: Install Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '16.15.1'
+
+      - name: Checkout Provider Code
+        uses: actions/checkout@v2
+        
+      - name: Installing All The Packages
+        run: npm install --f
+
+      - name: Starting Employee API
+        run: npm run start:employeeAPI        
+
+
+  Run-Provider-Tests:
     runs-on: windows-latest
     strategy:
       matrix:
