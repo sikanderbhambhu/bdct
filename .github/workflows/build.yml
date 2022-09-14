@@ -67,7 +67,7 @@ jobs:
 #         run: npm run can-i-deploy-consumer
 
 
-  Trigger-Employee-API:
+  Employee-API-Started:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -91,7 +91,6 @@ jobs:
 
   Run-Provider-Tests:
     runs-on: windows-latest
-    needs: Trigger-Employee-API
     strategy:
       matrix:
         pact_provider:
