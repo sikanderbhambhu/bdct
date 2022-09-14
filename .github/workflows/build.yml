@@ -91,6 +91,7 @@ jobs:
 
   Run-Provider-Tests:
     runs-on: windows-latest
+    needs: Trigger-Employee-API
     strategy:
       matrix:
         pact_provider:
@@ -106,16 +107,6 @@ jobs:
 
       - name: Installing All The Packages
         run: npm install --f
-
-#       - name: Install Java and Maven
-#         uses: actions/setup-java@v2
-#         with:
-#           java-version: '11'
-#           distribution: 'temurin'
-#           cache: maven
-
-      - name: Starting Employee API
-        run: npm run start:employeeAPI
 
       - name: Executing Tests For ${{ matrix.pact_provider }}
         run: npm run providerTest
