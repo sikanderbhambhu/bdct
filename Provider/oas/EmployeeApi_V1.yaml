@@ -63,13 +63,20 @@ paths:
                 reportingManager: string
                 shiftTimings: string
                 driverLicense: string
-                # spouseName: string
+                spouseName: string
                 # spouseName is not implemented in the service
                 # fatherName: string
                 # fatherName is not implemented in the service
 components:
   schemas:
     V1_EmployeeGetResponse200:
+      required:
+        - empId
+        - employeeName
+        - phoneNumber
+        - address
+        - designation
+        - reportingManager
       type: object
       properties:
         empId:
@@ -89,15 +96,21 @@ components:
         shiftTimings: 
           type: string
         socialSecurityNumber:
-          type: string
-        panCard:
-          type: string          
-      additionalProperties: false
+          type: boolean          
+      additionalProperties: true
     V2_EmployeeGetResponse200:
+      required:
+        - empId
+        - employeeName
+        - phoneNumber
+        - address
+        - shiftTimings
+        - reportingManager
+        - driverLicense
       type: object
       properties:
         empId:
-          type: string
+          type: number
         employeeName:
           type: string
         phoneNumber:
