@@ -9,7 +9,7 @@
     "publish:consumerB": "pact-broker publish Consumer/contracts/post_request/get-employee-api-consumerb-get-employee-api-provider.json --broker-base-url=https://epam7.pactflow.io --broker-token=0seO-geVlONnjCudc78FxQ --consumer-app-version=1.0 --branch=QA --tag=QA",
     "can-i-deploy-consumer": "pact-broker can-i-deploy --pacticipant get-employee-api-consumerA --broker-base-url=https://epam7.pactflow.io --broker-token=0seO-geVlONnjCudc78FxQ --version 1.0 --to-environment production",
 
-    "start:employeeAPI": "cd EmployeeAPI && mvn clean install && mvn spring-boot:run && mvn test",
+    "start:employeeAPI": "cd EmployeeAPI && mvn clean install && mvn spring-boot:run",
 
     "providerTest": "dredd",
     "publish:EmployeeApi": "pactflow publish-provider-contract Provider/oas/EmployeeApi_V1.yaml --verification-results Provider/results/ExecutionReport.md --broker-base-url=https://epam7.pactflow.io --broker-token=0seO-geVlONnjCudc78FxQ --provider get-employee-api-provider --provider-app-version 1.0 --verifier dredd --content-type application/yaml --verification-results-content-type application/yaml --branch QA --tag QA --no-verification-success",
