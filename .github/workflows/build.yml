@@ -47,21 +47,21 @@ jobs:
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
 
-  # Runs on branches as well, so we know the status of our PRs
-  Can-I-Deploy-Consumer:
-    runs-on: windows-latest
-    needs: Generate-Consumer-Contracts
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: '16.15.1'
-      - name: Installing All The Packages For ${{ matrix.pact_provider }}
-        run: npm install --f
+#   # Runs on branches as well, so we know the status of our PRs
+#   Can-I-Deploy-Consumer:
+#     runs-on: windows-latest
+#     needs: Generate-Consumer-Contracts
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-node@v2-beta
+#         with:
+#           node-version: '16.15.1'
+#       - name: Installing All The Packages For ${{ matrix.pact_provider }}
+#         run: npm install --f
 
-      - name: Downloading & Unzipping PACT Ruby Standalone On Windows Machine
-      - run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
-      - run: Powershell Expand-Archive pact-1.91.0-win32.zip
+#       - name: Downloading & Unzipping PACT Ruby Standalone On Windows Machine
+#       - run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
+#       - run: Powershell Expand-Archive pact-1.91.0-win32.zip
 
-      - name: Executing "Can I deploy?" Command For Consumer
-        run: npm run can-i-deploy-consumer
+#       - name: Executing "Can I deploy?" Command For Consumer
+#         run: npm run can-i-deploy-consumer
