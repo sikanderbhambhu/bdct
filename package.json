@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "consumerTest": "jest Consumer/tests/ --runInBand",
-    "publish:consumerA": "pact-broker publish Consumer/contracts/post_request/get-employee-api-consumera-get-employee-api-provider.json --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --consumer-app-version=1.0 --branch=QA --tag=QA",
+    "publish:consumerA": "pact-broker publish Consumer/contracts/post_request/get-employee-api-consumera-get-employee-api-provider.json --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --consumer-app-version=1.0 --branch=master --tag=master",
     "can-i-deploy-consumer": "pact-broker can-i-deploy --pacticipant get-employee-api-consumerA --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --version 1.0 --to-environment Production",
     "deploy:consumer": "pact-broker record-deployment --pacticipant get-employee-api-consumerA --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --version 1.0 --environment Production",
 
     "providerTest": "dredd",
-    "publish:EmployeeApi": "pactflow publish-provider-contract Provider/oas/EmployeeApi_V1.yaml --verification-results Provider/results/ExecutionReport.md --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --provider get-employee-api-provider --provider-app-version 1.0 --verifier dredd --content-type application/yaml --verification-results-content-type application/yaml --branch QA --tag QA --no-verification-success",
+    "publish:EmployeeApi": "pactflow publish-provider-contract Provider/oas/EmployeeApi_V1.yaml --verification-results Provider/results/ExecutionReport.md --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --provider get-employee-api-provider --provider-app-version 1.0 --verifier dredd --content-type application/yaml --verification-results-content-type application/yaml --branch master --tag master --verification-success",
     "can-i-deploy-provider": "pact-broker can-i-deploy --pacticipant get-employee-api-provider --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --version=1.0 --to-environment Production",
     "deploy:provider": "pact-broker record-deployment --pacticipant get-employee-api-provider --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --version 1.0 --environment Production"
   },
