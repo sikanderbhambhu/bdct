@@ -1,14 +1,5 @@
 name: Build
 
-# on:
-#   push:
-#   workflow_dispatch:
-#   schedule:
-#     - cron:  '* * * * *'    # At every 15th minute
-
-
-
-
 on:
   push:
   workflow_dispatch:
@@ -22,7 +13,7 @@ env:
   GIT_REF: ${{ github.ref }}
 
 jobs:
-  Generate-Consumer-Contracts:
+  Generate-And-Publish-Consumer-Contracts-To-Pactflow:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -40,46 +31,50 @@ jobs:
       - name: Installing All The Packages
         run: npm install --f
 
-      - name: Downloading PACT Ruby Standalone
-        run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
+#       - name: Downloading PACT Ruby Standalone
+#         run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
       
-      - name: Unzipping PACT Ruby Standalone      
-        run: Powershell Expand-Archive pact-1.91.0-win32.zip
+#       - name: Unzipping PACT Ruby Standalone
+#         run: Powershell Expand-Archive pact-1.91.0-win32.zip
 
-      - name: Executing Tests For ${{ matrix.pact_provider }}
+      - name: Executing Tests For ${{ matrix.pact_consumer }}
         run: npm run consumerTest
         env:
-          PACT_PROVIDER: ${{ matrix.pact_provider }}
+          PACT_PROVIDER: ${{ matrix.pact_consumer }}
 
       - name: Publish Pacts For ${{ matrix.pact_consumer }} & ${{ github.ref }}
         run: npm run publish:consumerA
         env:
-          PACT_PROVIDER: ${{ matrix.pact_provider }}
+          PACT_PROVIDER: ${{ matrix.pact_consumer }}
 
-#   Can-I-Deploy-Consumer:
-#     runs-on: windows-latest
-# #     needs: Generate-Consumer-Contracts
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2-beta
-#       - name: Checking Availability Of Provider Contract In Pactflow
-#         run: curl -X GET https://epam7.pactflow.io/pacts/provider/get-employee-api-provider -H "Authorization: Bearer GNkMi3cglj-TvEuf73-0TA" -H "Content-Type: application/json"
 
-#   # Runs on branches as well, so we know the status of our PRs
-#   Can-I-Deploy-Consumer:
-#     runs-on: windows-latest
-#     needs: Generate-Consumer-Contracts
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2-beta
-#         with:
-#           node-version: '16.15.1'
-#       - name: Installing All The Packages For ${{ matrix.pact_provider }}
-#         run: npm install --f
+  # Runs on branches as well, so we know the status of our PRs
+  Can-I-Deploy-Consumer:
+    runs-on: windows-latest
+    needs: Generate-And-Publish-Consumer-Contracts-To-Pactflow
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '16.15.1'
+      - name: Installing All The Packages For ${{ matrix.pact_provider }}
+        run: npm install --f
 
-#       - name: Downloading & Unzipping PACT Ruby Standalone On Windows Machine
-#       - run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
-#       - run: Powershell Expand-Archive pact-1.91.0-win32.zip
+      - name: Executing 'can-i-deploy' Command For Consumer
+        run: npm run can-i-deploy-consumer
 
-#       - name: Executing "Can I deploy?" Command For Consumer
-#         run: npm run can-i-deploy-consumer
+
+  # Runs on branches as well, so we know the status of our PRs
+  Deploy-Consumer-Application-To-Production:
+    runs-on: windows-latest
+    needs: Can-I-Deploy-Consumer
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '16.15.1'
+      - name: Installing All The Packages For ${{ matrix.pact_provider }}
+        run: npm install --f
+
+      - name: Executing 'deploy' Command For Consumer
+        run: npm run deploy
