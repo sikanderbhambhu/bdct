@@ -31,12 +31,6 @@ jobs:
       - name: Installing All The Packages
         run: npm install --f
 
-#       - name: Downloading PACT Ruby Standalone
-#         run: curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.91.0/pact-1.91.0-win32.zip
-      
-#       - name: Unzipping PACT Ruby Standalone
-#         run: Powershell Expand-Archive pact-1.91.0-win32.zip
-
       - name: Executing Tests For ${{ matrix.pact_consumer }}
         run: npm run consumerTest
         env:
