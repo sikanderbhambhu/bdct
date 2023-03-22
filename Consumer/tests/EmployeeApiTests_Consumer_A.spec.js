@@ -4,8 +4,8 @@ const path = require('path');
 const { string, integer } = require('@pact-foundation/pact').Matchers;
 
 const provider = new Pact({
-    consumer: 'get-employee-api-consumerA',
-    provider: 'get-employee-api-provider',
+    consumer: 'employee-api-consumer',
+    provider: 'employee-api-provider',
     dir: path.resolve(process.cwd(), 'Consumer/contracts/post_request'),
     logLevel: 'INFO',
 });
