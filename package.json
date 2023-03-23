@@ -6,7 +6,7 @@
   "scripts": {
     "consumerTest": "jest Consumer/tests/ --runInBand",
     "publish:consumerA": "pact-broker publish Consumer/contracts/post_request/employee-api-consumer-employee-api-provider.json --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --consumer-app-version=1.0 --branch=master --tag=master",
-    "can-i-deploy-consumer": "pact-broker can-i-deploy --pacticipant employee-api-consumer --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --version 1.0 --to-environment Production",
+    "can-i-deploy-consumer": "pact-broker can-i-deploy --pacticipant employee-api-consumer --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --version 2.0 --to-environment Production",
     "deploy:consumer": "pact-broker record-deployment --pacticipant employee-api-consumer --broker-base-url=https://epam7.pactflow.io --broker-token=GNkMi3cglj-TvEuf73-0TA --version 1.0 --environment Production",
 
     "providerTest": "dredd",
